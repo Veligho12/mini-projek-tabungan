@@ -39,4 +39,4 @@ mini-projek-tabungan
 2. Commit kedua : Setup database serta konfigurasinya : config/database.php (Konfigurasi database), database.sql, .htaccess 
 3. Commit ketiga : Menambahkan routing dasar pada index.php dan atur routing di web.php
 4. Commit keempat : Menambahkan controller logika aplikasi dasar untuk autentikasi, home dan saving 
-
+5. Commit kelima : Tambah Middleware untuk Keamanan dan autentikasi AuthMiddleware.php ,memastikan user sudah login sebelum mengakses fitur tertentu.

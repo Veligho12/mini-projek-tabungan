@@ -36,5 +36,5 @@ mini-projek-tabungan
 # Tahapan commit 
 
 1. Commit pertama: Hanya folder dan file kosong sesuai struktur proyek, tanpa kode.
-2. Commit kedua : Setup konfigurasi : config/database.php (Konfigurasi database), database.sql, .htaccess 
+2. Commit kedua : Setup database serta konfigurasinya : config/database.php (Konfigurasi database), database.sql, .htaccess 
 

@@ -37,4 +37,4 @@ mini-projek-tabungan
 
 1. Commit pertama: Hanya folder dan file kosong sesuai struktur proyek, tanpa kode.
 2. Commit kedua : Setup database serta konfigurasinya : config/database.php (Konfigurasi database), database.sql, .htaccess 
-
+3. Commit ketiga : Menambahkan routing dasar pada index.php dan atur routing di web.php

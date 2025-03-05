@@ -5,7 +5,7 @@ class AuthController {
 
     public function __construct() {
         $database = new Database();
-        $this->db = $database->getConnection();
+        $this->db = $database->connect();
         require_once 'app/models/user.php';
         $this->userModel = new User($this->db);
     }
@@ -42,12 +42,7 @@ class AuthController {
                 header('Location: login');
                 exit();
             }
-           } else {
-            // Tambahkan error handling
-            $error = "Gagal mendaftar. Silakan coba lagi.";
-            require_once 'app/views/register.php';
         }
-    
         require_once 'app/views/register.php';
     }
 
@@ -65,4 +60,3 @@ class AuthController {
         exit();
     }
 }
-?>

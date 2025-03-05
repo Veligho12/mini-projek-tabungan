@@ -16,11 +16,10 @@ class Saving {
         $stmt->bindParam(':amount', $amount);
         $stmt->bindParam(':message', $message);
         
-        try {
-            return $stmt->execute();
-        } catch(PDOException $e) {
-            return false;
+        if($stmt->execute()) {
+            return true;
         }
+        return false;
     }
 
     public function getAll() {

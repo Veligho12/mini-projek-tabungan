@@ -5,8 +5,8 @@ class HomeController {
 
     public function __construct() {
         $database = new Database();
-        $this->db = $database->getConnection();
-        require_once 'app/models/Saving.php';
+        $this->db = $database->connect();
+        require_once 'app/models/Donation.php';
         $this->savingModel = new Saving($this->db);
     }
 
@@ -14,7 +14,7 @@ class HomeController {
         require_once 'app/helpers/AuthMiddleware.php';
         AuthMiddleware::isAuthenticated();
         
-        $savings = $this->savingModel->getAll();
+        $saving = $this->savingModel->getAll();
         $isAdmin = $_SESSION['user_role'] === 'admin';
         require_once 'app/views/home.php';
     }
@@ -26,8 +26,7 @@ class HomeController {
         require_once 'app/models/user.php';
         $userModel = new User($this->db);
         $users = $userModel->getAllUsers();
-        $savings = $this->savingModel->getAll();
+        $saving = $this->savingModel->getAll();
         require_once 'app/views/admin.php';
     }
 }
-?>

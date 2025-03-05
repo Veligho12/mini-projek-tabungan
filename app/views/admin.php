@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Sistem Tabungan Mahasiswa</title>
+    <title>Admin Dashboard - Mini Tabungan</title>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -11,6 +9,7 @@
             --dark-color: #373737;
             --light-background: #f4f4f4;
             --white: #ffffff;
+            --accent-color: #9BD3D0;
         }
 
         * {
@@ -26,8 +25,8 @@
             color: var(--dark-color);
         }
 
-        /* Navigation */
-        .navbar {
+        /* Navigation Styles */
+        nav {
             background-color: var(--white);
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             padding: 15px 30px;
@@ -36,47 +35,57 @@
             align-items: center;
         }
 
-        .navbar-brand {
+        nav h1 {
             font-size: 1.5rem;
-            font-weight: 700;
             color: var(--primary-color);
-            text-decoration: none;
+            font-weight: 700;
         }
 
-        .navbar-nav {
+        nav div {
             display: flex;
-            list-style: none;
+            align-items: center;
+            gap: 15px;
         }
 
-        .nav-item {
-            margin-left: 20px;
-        }
-
-        .nav-link {
+        nav div a {
             text-decoration: none;
             color: var(--dark-color);
             font-weight: 500;
             transition: color 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
         }
 
-        .nav-link:hover {
+        nav div a:hover {
             color: var(--primary-color);
+            background-color: rgba(255, 101, 28, 0.1);
         }
 
-        /* Main Container */
-        .container {
+        /* Main Content Styles */
+        main {
             max-width: 1200px;
             margin: 30px auto;
-            background-color: var(--white);
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            padding: 30px;
+            padding: 20px;
         }
 
-        /* Table Styling */
+        main h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Admin Table Styles */
         .admin-table {
             width: 100%;
-            border-collapse: collapse;
+            background-color: var(--white);
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
         }
 
         .admin-table thead {
@@ -84,63 +93,71 @@
             color: var(--white);
         }
 
-        .admin-table th, 
-        .admin-table td {
+        .admin-table th, .admin-table td {
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #e0e0e0;
         }
 
-        .admin-table tbody tr:hover {
-            background-color: rgba(255, 101, 28, 0.05);
+        .admin-table thead th {
+            font-weight: 700;
         }
 
-        .admin-table tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
+        .admin-table tbody tr:hover {
+            background-color: rgba(155, 211, 208, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .admin-table tbody tr:last-child td {
+            border-bottom: none;
         }
 
         /* Responsive Design */
         @media screen and (max-width: 768px) {
-            .navbar {
+            nav {
                 flex-direction: column;
                 text-align: center;
             }
 
-            .navbar-nav {
+            nav div {
                 margin-top: 15px;
                 flex-direction: column;
-                align-items: center;
+                gap: 10px;
             }
 
-            .nav-item {
-                margin: 10px 0;
+            main {
+                padding: 10px;
             }
 
             .admin-table {
                 font-size: 0.9rem;
             }
+
+            .admin-table th, .admin-table td {
+                padding: 8px 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <a href="#" class="navbar-brand">Sistem Tabungan Mahasiswa</a>
-        <ul class="navbar-nav">
-            <li class="nav-item"><a href="home" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="logout" class="nav-link">Logout</a></li>
-        </ul>
+    <nav>
+        <h1>Mini Tabungan - Admin Dashboard</h1>
+        <div>
+            <a href="home.php">Home</a>
+            <a href="logout.php">Logout</a>
+        </div>
     </nav>
-
-    <main class="container">
-        <h2>Daftar Pengguna</h2>
+    
+    <main>
+        <h2>Users</h2>
         <table class="admin-table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nama</th>
-                    <th>Jumlah Tabungan</th>
-                    <th>Pesan</th>
-                    <th>Dibuat Pada</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Created At</th>
                 </tr>
             </thead>
             <tbody>
@@ -155,7 +172,7 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-
+        
         <h2>All Savings</h2>
         <table class="admin-table">
             <thead>
@@ -168,12 +185,12 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($allSavings as $saving): ?>
+                <?php foreach($savings as $saving): ?>
                     <tr>
                         <td><?php echo $saving['id']; ?></td>
                         <td><?php echo htmlspecialchars($saving['name']); ?></td>
-                        <td>Rp<?php echo number_format($saving['amount'], 2); ?></td>
-                        <td><?php echo htmlspecialchars($saving['message'] ?? '-'); ?></td>
+                        <td>Rp<?php echo number_format($saving['amount']); ?></td>
+                        <td><?php echo htmlspecialchars($saving['message']); ?></td>
                         <td><?php echo $saving['created_at']; ?></td>
                     </tr>
                 <?php endforeach; ?>

@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar - Sistem Tabungan Mahasiswa</title>
+    <title>Register - Mini Tabungan</title>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -11,6 +9,7 @@
             --dark-color: #373737;
             --light-background: #f4f4f4;
             --white: #ffffff;
+            --accent-color: #9BD3D0;
         }
 
         * {
@@ -26,8 +25,8 @@
             color: var(--dark-color);
         }
 
-        /* Navigation */
-        .navbar {
+        /* Navigation Styles */
+        nav {
             background-color: var(--white);
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             padding: 15px 30px;
@@ -36,166 +35,130 @@
             align-items: center;
         }
 
-        .navbar-brand {
+        nav h1 {
             font-size: 1.5rem;
-            font-weight: 700;
             color: var(--primary-color);
-            text-decoration: none;
+            font-weight: 700;
         }
 
-        .navbar-nav {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-item {
-            margin-left: 20px;
-        }
-
-        .nav-link {
+        nav a {
             text-decoration: none;
             color: var(--dark-color);
             font-weight: 500;
             transition: color 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
         }
 
-        .nav-link:hover {
+        nav a:hover {
             color: var(--primary-color);
+            background-color: rgba(255, 101, 28, 0.1);
         }
 
-        /* Main Container */
-        .container {
+        /* Main Content Styles */
+        main {
             max-width: 400px;
             margin: 30px auto;
+            padding: 20px;
             background-color: var(--white);
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        main h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
         /* Form Styles */
-        .register-form h2 {
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
+        form div {
             margin-bottom: 15px;
         }
 
-        .form-group label {
+        label {
             display: block;
             margin-bottom: 5px;
             color: var(--dark-color);
+            font-weight: 500;
         }
 
-        .form-group input {
+        input {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
+            font-family: 'Jost', sans-serif;
         }
 
-        .btn {
-            display: inline-block;
+        button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background-color: var(--primary-color);
             color: var(--white);
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-family: 'Jost', sans-serif;
+            font-weight: 500;
             transition: background-color 0.3s ease;
         }
 
-        .btn:hover {
-            background-color: var(--dark-color);
+        button:hover {
+            background-color: #e55a15;
         }
 
-        .error-message {
-            background-color: #ff4d4d;
-            color: var(--white);
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .login-link {
+        main p {
             text-align: center;
             margin-top: 15px;
         }
 
-        .login-link a {
+        main p a {
             color: var(--primary-color);
             text-decoration: none;
+            font-weight: 500;
         }
 
-        .login-link a:hover {
+        main p a:hover {
             text-decoration: underline;
         }
 
         /* Responsive Design */
-        @media screen and (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .navbar-nav {
-                margin-top: 15px;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .nav-item {
-                margin: 10px 0;
-            }
-
-            .container {
+        @media screen and (max-width: 480px) {
+            main {
                 width: 95%;
-                padding: 20px;
+                margin: 20px auto;
+                padding: 15px;
             }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <a href="#" class="navbar-brand">Sistem Tabungan Mahasiswa</a>
-        <ul class="navbar-nav">
-            <li class="nav-item"><a href="home.php" class="nav-link">Beranda</a></li>
-        </ul>
+    <nav>
+        <h1>Mini Tabungan</h1>
+        <a href="home.php">Home</a>
     </nav>
-
-    <div class="container">
-        <form method="POST" action="register" class="register-form">
-            <h2>Daftar</h2>
-            
-            <?php if(!empty($error)): ?>
-                <div class="error-message">
-                    <?php echo $error; ?>
-                </div>
-            <?php endif; ?>
-
-            <div class="form-group">
-                <label>Nama</label>
+    
+    <main>
+        <h2>Register</h2>
+        <form method="POST" action="register">
+            <div>
+                <label>Name</label>
                 <input type="text" name="name" required>
             </div>
-            <div class="form-group">
+            <div>
                 <label>Email</label>
                 <input type="email" name="email" required>
             </div>
-            <div class="form-group">
-                <label>Kata Sandi</label>
+            <div>
+                <label>Password</label>
                 <input type="password" name="password" required>
             </div>
-            <button type="submit" class="btn">Daftar</button>
-            
-            <div class="login-link">
-                Sudah punya akun? <a href="login.php">Login</a>
-            </div>
+            <button type="submit">Register</button>
         </form>
-    </div>
+        <p>Already have an account? <a href="login.php">Login</a></p>
+    </main>
 </body>
 </html>

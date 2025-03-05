@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Tabungan - Sistem Tabungan Mahasiswa</title>
+    <title>Saving - Mini Tabungan</title>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -11,6 +9,7 @@
             --dark-color: #373737;
             --light-background: #f4f4f4;
             --white: #ffffff;
+            --accent-color: #9BD3D0;
         }
 
         * {
@@ -26,8 +25,8 @@
             color: var(--dark-color);
         }
 
-        /* Navigation */
-        .navbar {
+        /* Navigation Styles */
+        nav {
             background-color: var(--white);
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             padding: 15px 30px;
@@ -36,135 +35,115 @@
             align-items: center;
         }
 
-        .navbar-brand {
+        nav h1 {
             font-size: 1.5rem;
-            font-weight: 700;
             color: var(--primary-color);
-            text-decoration: none;
+            font-weight: 700;
         }
 
-        .navbar-nav {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-item {
-            margin-left: 20px;
-        }
-
-        .nav-link {
+        nav a {
             text-decoration: none;
             color: var(--dark-color);
             font-weight: 500;
             transition: color 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
         }
 
-        .nav-link:hover {
+        nav a:hover {
             color: var(--primary-color);
+            background-color: rgba(255, 101, 28, 0.1);
         }
 
-        /* Main Container */
-        .container {
+        /* Main Content Styles */
+        main {
             max-width: 400px;
             margin: 30px auto;
+            padding: 20px;
             background-color: var(--white);
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        main h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
         /* Form Styles */
-        .saving-form h2 {
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
+        form div {
             margin-bottom: 15px;
         }
 
-        .form-group label {
+        label {
             display: block;
             margin-bottom: 5px;
             color: var(--dark-color);
+            font-weight: 500;
         }
 
-        .form-group input,
-        .form-group textarea {
+        input, textarea {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
+            font-family: 'Jost', sans-serif;
         }
 
-        .form-group textarea {
+        textarea {
             resize: vertical;
             min-height: 100px;
         }
 
-        .btn {
-            display: inline-block;
+        button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background-color: var(--primary-color);
             color: var(--white);
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-family: 'Jost', sans-serif;
+            font-weight: 500;
             transition: background-color 0.3s ease;
         }
 
-        .btn:hover {
-            background-color: var(--dark-color);
+        button:hover {
+            background-color: #e55a15;
         }
 
         /* Responsive Design */
-        @media screen and (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .navbar-nav {
-                margin-top: 15px;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .nav-item {
-                margin: 10px 0;
-            }
-
-            .container {
+        @media screen and (max-width: 480px) {
+            main {
                 width: 95%;
-                padding: 20px;
+                margin: 20px auto;
+                padding: 15px;
             }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <a href="#" class="navbar-brand">Sistem Tabungan Mahasiswa</a>
-        <ul class="navbar-nav">
-            <li class="nav-item"><a href="home.php" class="nav-link">Beranda</a></li>
-        </ul>
+    <nav>
+        <h1>Mini Tabungan</h1>
+        <a href="home">Home</a>
     </nav>
-
-    <div class="container">
-        <form method="POST" action="save" class="saving-form">
-            <h2>Tambah Tabungan</h2>
-            
-            <div class="form-group">
-                <label>Jumlah Tabungan (Rp)</label>
-                <input type="number" name="amount" required min="1" step="0.01">
+    
+    <main>
+        <h2>Make a Saving</h2>
+        <form method="POST" action="save">
+            <div>
+                <label>Amount (Rp)</label>
+                <input type="number" name="amount" required>
             </div>
-            <div class="form-group">
-                <label>Pesan (Opsional)</label>
-                <textarea name="message"></textarea>
+            <div>
+                <label>Message</label>
+                <textarea name="message" required></textarea>
             </div>
-            <button type="submit" class="btn">Simpan</button>
+            <button type="submit">Save</button>
         </form>
-    </div>
+    </main>
 </body>
 </html>

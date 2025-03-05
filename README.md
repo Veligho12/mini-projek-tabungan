@@ -2,37 +2,6 @@
 # Deskripsi Proyek  
 Mini-projek ini adalah aplikasi tabungan sederhana yang dibuat dengan PHP. Aplikasi ini memungkinkan pengguna untuk menyimpan, menarik, dan melihat saldo tabungan mereka.
 
-# Struktur Proyek  
-mini-projek-tabungan
-┣ app
-┃ ┣ controllers (Berisi logic utama seperti autentikasi dan transaksi)
-┃ ┃ ┣ AuthController.php
-┃ ┃ ┣ HomeController.php
-┃ ┃ ┗ SavingController.php
-┃ ┣ helpers (Berisi middleware untuk otorisasi)
-┃ ┃ ┗ AuthMiddleware.php
-┃ ┣ models (Berisi model untuk database tabungan & user)
-┃ ┃ ┣ Saving.php
-┃ ┃ ┗ user.php
-┃ ┣ views (Berisi tampilan halaman user dan admin)
-┃ ┃ ┣ admin.php
-┃ ┃ ┣ home.php
-┃ ┃ ┣ login.php
-┃ ┃ ┣ logout.php
-┃ ┃ ┣ register.php
-┃ ┃ ┗ save.php
-┣ config
-┃ ┗ database.php (Konfigurasi database)
-┣ public/css
-┃ ┗ style.css (File CSS untuk styling)
-┣ routes
-┃ ┗ web.php (Routing aplikasi)
-┣ .htaccess
-┣ database.sql (File SQL untuk inisialisasi database)
-┣ index.php (Entry point aplikasi)
-┗ README.md
-
-
 # Tahapan commit 
 
 1. Commit pertama: Hanya folder dan file kosong sesuai struktur proyek, tanpa kode.
@@ -40,3 +9,4 @@ mini-projek-tabungan
 3. Commit ketiga : Menambahkan routing dasar pada index.php dan atur routing di web.php
 4. Commit keempat : Menambahkan controller logika aplikasi dasar untuk autentikasi, home dan saving 
 5. Commit kelima : Tambah Middleware untuk Keamanan dan autentikasi AuthMiddleware.php ,memastikan user sudah login sebelum mengakses fitur tertentu.
+6. Commit keenam :  Tambah Model untuk Menghubungkan ke Database. menambahkan models/User.php untuk menangani data pengguna, dan models/Saving.php untuk mengelola data tabungan user, serta menghubungkan model dengan database untuk operasi CRUD.

@@ -5,8 +5,8 @@ class AuthController {
 
     public function __construct() {
         $database = new Database();
-        $this->db = $database->getConnection(); // Gunakan getConnection() dari class Database
-        require_once 'app/models/User.php';
+        $this->db = $database->getConnection();
+        require_once 'app/models/user.php';
         $this->userModel = new User($this->db);
     }
 
@@ -14,57 +14,42 @@ class AuthController {
         require_once 'app/helpers/AuthMiddleware.php';
         AuthMiddleware::isGuest();
 
-        $error = ''; // Tambahkan variabel error untuk pesan kesalahan
-
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+            $email = $_POST['email'];
             $password = $_POST['password'];
 
-            try {
-                if($this->userModel->login($email, $password)) {
-                    header('Location: home');
-                    exit();
-                } else {
-                    $error = 'Email atau password salah';
-                }
-            } catch (Exception $e) {
-                $error = 'Terjadi kesalahan saat login';
+            if($this->userModel->login($email, $password)) {
+                header('Location: home');
+                exit();
             }
         }
-
         require_once 'app/views/login.php';
     }
-
 
     public function register() {
         require_once 'app/helpers/AuthMiddleware.php';
         AuthMiddleware::isGuest();
 
-        $error = ''; // Tambahkan variabel error untuk pesan kesalahan
-
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
-            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+            $name = $_POST['name'];
+            $email = $_POST['email'];
             $password = $_POST['password'];
-
+            
             // First user will be admin, rest will be regular users
             $role = $this->isFirstUser() ? 'admin' : 'user';
 
-            try {
-                if($this->userModel->register($name, $email, $password, $role)) {
-                    header('Location: login');
-                    exit();
-                } else {
-                    $error = 'Registrasi gagal. Silakan coba lagi.';
-                }
-            } catch (Exception $e) {
-                $error = 'Terjadi kesalahan saat registrasi';
+            if($this->userModel->register($name, $email, $password, $role)) {
+                header('Location: login');
+                exit();
             }
+           } else {
+            // Tambahkan error handling
+            $error = "Gagal mendaftar. Silakan coba lagi.";
+            require_once 'app/views/register.php';
         }
-
+    
         require_once 'app/views/register.php';
     }
-
 
     private function isFirstUser() {
         $query = "SELECT COUNT(*) as count FROM users";
@@ -80,5 +65,4 @@ class AuthController {
         exit();
     }
 }
-
-
+?>

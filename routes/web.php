@@ -14,7 +14,7 @@ class Router {
                 $controller->admin();
                 break;
             
-            case 'saving':
+            case 'save':
                 require_once 'app/controllers/SavingController.php';
                 $controller = new SavingController();
                 $controller->index();
@@ -26,11 +26,11 @@ class Router {
                 $controller->login();
                 break;
             
-            case 'register':
-                require_once 'app/controllers/AuthController.php';
-                $controller = new AuthController();
-                $controller->register();
-                break;
+                case 'register':
+                    require_once 'app/controllers/AuthController.php';
+                    $controller = new AuthController();
+                    $controller->register();
+                    break;
             
             case 'logout':
                 require_once 'app/controllers/AuthController.php';

@@ -14,10 +14,8 @@ class HomeController {
         require_once 'app/helpers/AuthMiddleware.php';
         AuthMiddleware::isAuthenticated();
         
-        $userId = $_SESSION['user_id'];
-        $savings = $this->savingModel->getUserSavings($userId);
-        $totalSavings = $this->savingModel->getTotalSavings($userId);
-        
+        $savings = $this->savingModel->getAll();
+        $isAdmin = $_SESSION['user_role'] === 'admin';
         require_once 'app/views/home.php';
     }
 
@@ -25,7 +23,10 @@ class HomeController {
         require_once 'app/helpers/AuthMiddleware.php';
         AuthMiddleware::isAdmin();
         
-        $allSavings = $this->savingModel->getAllSavings();
+        require_once 'app/models/user.php';
+        $userModel = new User($this->db);
+        $users = $userModel->getAllUsers();
+        $savings = $this->savingModel->getAll();
         require_once 'app/views/admin.php';
     }
 }

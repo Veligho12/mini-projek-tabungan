@@ -6,7 +6,7 @@ class HomeController {
     public function __construct() {
         $database = new Database();
         $this->db = $database->connect();
-        require_once 'app/models/Donation.php';
+        require_once 'app/models/Saving.php';
         $this->savingModel = new Saving($this->db);
     }
 

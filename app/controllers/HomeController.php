@@ -30,3 +30,4 @@ class HomeController {
         require_once 'app/views/admin.php';
     }
 }
+?>

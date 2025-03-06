@@ -30,3 +30,5 @@ class SavingController {
         require_once 'app/views/Saving.php';
     }
 }
+
+?>
